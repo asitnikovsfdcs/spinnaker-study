@@ -2,26 +2,26 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
     labels:
-        app: alexy-microservice
+        app: alexey-microservice
         stack: frontend
         source: demo
-    name: alexy-microservice
+    name: alexey-microservice
     namespace: microservices
 spec:
     replicas: 3
     selector:
         matchLabels:
-            run: alexy-microservice
+            run: alexey-microservice
     template:
         metadata:
             labels:
-                app: alexy-microservice
-                run: alexy-microservice
+                app: alexey-microservice
+                run: alexey-microservice
                 source: demo
         spec:
             containers:
-                -   image: 465848653329.dkr.ecr.us-west-2.amazonaws.com/alexy-microservice
-                    name: alexy-microservice
+                -   image: 465848653329.dkr.ecr.us-west-2.amazonaws.com/alexey-microservice
+                    name: alexey-microservice
                     ports:
                         -   name: web
                             containerPort: 8080
@@ -31,13 +31,13 @@ kind: Service
 apiVersion: v1
 metadata:
     labels:
-        app: alexy-microservice-service
-    name: alexy-microservice-service
+        app: alexey-microservice-service
+    name: alexey-microservice-service
     namespace: microservices
 spec:
     selector:
         source: demo
-        app: alexy-microservice
+        app: alexey-microservice
     ports:
         -   name: web
             protocol: TCP
@@ -51,15 +51,15 @@ kind: Ingress
 metadata:
     annotations:
         nginx.ingress.kubernetes.io/rewrite-target: /$2
-    name: alexy-ingress
+    name: alexey-ingress
     namespace: microservices
 spec:
     rules:
         -   http:
                 paths:
-                    -   path: /alexy(/|$)(.*)
+                    -   path: /alexey(/|$)(.*)
                         backend:
-                            serviceName: alexy-microservice-service
+                            serviceName: alexey-microservice-service
                             servicePort: 30201
 
 
