@@ -2,26 +2,26 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
     labels:
-        app: alexey-microservice
+        app: alexy-microservice
         stack: frontend
         source: demo
-    name: alexey-microservice
+    name: alexy-microservice
     namespace: microservices
 spec:
     replicas: 3
     selector:
         matchLabels:
-            run: alexey-microservice
+            run: alexy-microservice
     template:
         metadata:
             labels:
-                app: alexey-microservice
-                run: alexey-microservice
+                app: alexy-microservice
+                run: alexy-microservice
                 source: demo
         spec:
             containers:
-                -   image: 465848653329.dkr.ecr.us-west-2.amazonaws.com/alexey-microservice
-                    name: alexey-microservice
+                -   image: 465848653329.dkr.ecr.us-west-2.amazonaws.com/alexy-microservice
+                    name: alexy-microservice
                     ports:
                         -   name: web
                             containerPort: 8080
@@ -31,13 +31,13 @@ kind: Service
 apiVersion: v1
 metadata:
     labels:
-        app: alexey-microservice-service
-    name: alexey-microservice-service
+        app: alexy-microservice-service
+    name: alexy-microservice-service
     namespace: microservices
 spec:
     selector:
         source: demo
-        app: alexey-microservice
+        app: alexy-microservice
     ports:
         -   name: web
             protocol: TCP
@@ -51,15 +51,15 @@ kind: Ingress
 metadata:
     annotations:
         nginx.ingress.kubernetes.io/rewrite-target: /$2
-    name: alexey-ingress
+    name: alexy-ingress
     namespace: microservices
 spec:
     rules:
         -   http:
                 paths:
-                    -   path: /alexey(/|$)(.*)
+                    -   path: /alexy(/|$)(.*)
                         backend:
-                            serviceName: alexey-microservice-service
+                            serviceName: alexy-microservice-service
                             servicePort: 30201
 
 
